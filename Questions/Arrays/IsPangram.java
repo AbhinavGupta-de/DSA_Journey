@@ -12,5 +12,15 @@ public class IsPangram {
    }
   }
   return true;
+
+  // * Another solutions, using set
+  // Set<Character> unique_char=new HashSet<Character>();
+  // int n=sentence.length();
+  // for(int i=0;i<n;i++){
+  // unique_char.add(sentence.charAt(i));
+  // }
+  // if(unique_char.size()==26){
+  // return true;
+  // }else{return false;}
  }
 }
