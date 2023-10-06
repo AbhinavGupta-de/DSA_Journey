@@ -43,3 +43,23 @@
 - Right shifting a number by one is equivalent to dividing it by 2.
 
 - A >> B = A / 2^B
+
+## Number of digits trick
+
+$$
+\log_x{n} = y
+$$
+
+This means that n has int(y) + 1 number of digits in base x.
+
+## Pascal's Traingle's Sum
+
+$$
+\sum_{i=0}^{n} \binom{n}{i} = 2^{n-1}
+$$
+
+This can be calculated using bit manipulation.
+
+$$
+1 \ll (n-1) = 2^{(n-1)}
+$$
