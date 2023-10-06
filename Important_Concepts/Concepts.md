@@ -63,3 +63,21 @@ This can be calculated using bit manipulation.
 $$
 1 \ll (n-1) = 2^{(n-1)}
 $$
+
+## What does n & (n-1) do?
+
+- It removes the last set bit of n.
+
+For example:
+
+$$
+n = 10101000
+$$
+
+$$
+n-1 = 10100111
+$$
+
+$$
+n \& (n-1) = 10100000
+$$
