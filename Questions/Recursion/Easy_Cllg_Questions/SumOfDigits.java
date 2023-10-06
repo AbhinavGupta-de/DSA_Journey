@@ -1,4 +1,4 @@
-package Questions.Recursion;
+package Questions.Recursion.Easy_Cllg_Questions;
 
 public class SumOfDigits {
 

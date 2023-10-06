@@ -25,3 +25,21 @@
 - Complement of a number is the number obtained by changing all the 1s to 0s and all 0s to 1s.
 
 - Complement of a number can be found by XORing it with all 1s i.e. 2^n - 1.
+
+## Bitwise Operators
+
+### Left Shift Operator(<<)
+
+- Left shift operator is used to shift the bits of the number to the left side.
+
+- Left shifting a number by one is equivalent to multiplying it by 2.
+
+- A << B = A \* 2^B
+
+### Right Shift Operator(>>)
+
+- Right shift operator is used to shift the bits of the number to the right side.
+
+- Right shifting a number by one is equivalent to dividing it by 2.
+
+- A >> B = A / 2^B
