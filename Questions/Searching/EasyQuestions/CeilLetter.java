@@ -1,9 +1,9 @@
 package Questions.Searching.EasyQuestions;
 
 /**
- * FloorLetter: Find smallest letter greater than target
+ * CeilLetter: Find smallest letter greater than target
  */
-public class FloorLetter {
+public class CeilLetter {
 
  public char nextGreaterLetter(int[] letters, char target) {
   int start = 0;
