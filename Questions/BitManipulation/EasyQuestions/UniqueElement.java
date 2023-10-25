@@ -1,4 +1,4 @@
-package Questions.BitManipulation;
+package Questions.BitManipulation.EasyQuestions;
 
 import java.util.HashSet;
 

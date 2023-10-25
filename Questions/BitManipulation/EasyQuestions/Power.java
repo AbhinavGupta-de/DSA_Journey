@@ -1,4 +1,4 @@
-package Questions.BitManipulation;
+package Questions.BitManipulation.EasyQuestions;
 
 public class Power {
  public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Questions.BitManipulation;
+package Questions.BitManipulation.EasyQuestions;
 
 public class ReSetIthBit {
  public static void main(String[] args) {
