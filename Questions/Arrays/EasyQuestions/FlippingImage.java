@@ -1,4 +1,4 @@
-package Questions.Arrays;
+package Questions.Arrays.EasyQuestions;
 
 public class FlippingImage {
  public int[][] flipAndInvertImage(int[][] image) {

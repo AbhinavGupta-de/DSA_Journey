@@ -1,4 +1,4 @@
-package Questions.Arrays;
+package Questions.Arrays.EasyQuestions;
 
 // https://leetcode.com/problems/richest-customer-wealth/
 public class RichestCustomerWealth {

@@ -1,4 +1,4 @@
-package Questions.Arrays;
+package Questions.Arrays.EasyQuestions;
 
 public class IsPangram {
  public boolean checkIfPangram(String sentence) {
