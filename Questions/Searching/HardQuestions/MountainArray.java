@@ -1,4 +1,4 @@
-package Questions.Searching.HardQuestion;
+package Questions.Searching.HardQuestions;
 
 class MountainArray1 {
  public int get(int index) {
