@@ -8,10 +8,10 @@ public class SquareRoot {
   int ans = 0;
 
   while (start <= end) {
-   int mid = (start + end) / 2;
-   if (mid * mid == num) {
+   int mid = start + (end - start) / 2;
+   if ((long) mid * mid == num) {
     return mid;
-   } else if (mid * mid < num) {
+   } else if ((long) mid * mid < num) {
     start = mid + 1;
     ans = mid;
    } else {
@@ -19,5 +19,11 @@ public class SquareRoot {
    }
   }
   return ans;
+ }
+
+ public static void main(String[] args) {
+  int sqrt = new SquareRoot().sqrt(808201);
+
+  System.out.println(sqrt);
  }
 }
