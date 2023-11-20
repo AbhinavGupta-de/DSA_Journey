@@ -79,5 +79,41 @@ n-1 = 10100111
 $$
 
 $$
-n \& (n-1) = 10100000
+n\  \& \ (n-1) = 10100000
+$$
+
+## What does n & (-n) do?
+
+- It gives the last set bit of n.
+
+For example:
+
+$$
+n = 10101000
+$$
+
+$$
+-n = 01011000
+$$
+
+$$
+n\  \& \ (-n) = 00001000
+$$
+
+## What does n | (n-1) do?
+
+- It gives the number formed by setting all the bits after the last set bit of n.
+
+For example:
+
+$$
+n = 10101000
+$$
+
+$$
+n-1 = 10100111
+$$
+
+$$
+n\  | \ (n-1) = 10101111
 $$
