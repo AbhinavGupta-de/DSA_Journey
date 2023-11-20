@@ -1,8 +1,6 @@
-# Important Concepts from DSA
+# Bit Manipulation
 
-## Bit Manipulation
-
-### XOR
+## XOR
 
 - XOR of a number with itself is 0.
 
@@ -20,7 +18,7 @@
 
 - A ^ B ^ A = B ^ A ^ A = B ^ (A ^ A) = B ^ 0 = B
 
-### Complement
+## Complement
 
 - Complement of a number is the number obtained by changing all the 1s to 0s and all 0s to 1s.
 
@@ -117,3 +115,119 @@ $$
 $$
 n\  | \ (n-1) = 10101111
 $$
+
+## Questions
+
+### Check ith bit is set or not
+
+We can check if the ith bit is set or not by using the following formula
+
+$$
+n\  \& \ (1 << i) \neq 0
+$$
+
+What does it do?
+
+- It shifts 1 by i bits to the left and then performs AND operation with n.
+- If the ith bit is set then the result will be non-zero.
+- If the ith bit is not set then the result will be zero.
+
+Example:
+
+$$
+n = 10101000
+$$
+
+$$
+1 << 3 = 00001000
+$$
+
+$$
+n\  \& \ (1 << 3) = 00001000 \neq 0
+$$
+
+Code
+
+```java
+boolean checkIthBit(int n, int i) {
+    return (n & (1 << i)) != 0;
+}
+```
+
+---
+
+### Set ith bit
+
+We can set the ith bit by using the following formula
+
+$$
+n\  | \ (1 << i)
+$$
+
+What does it do?
+
+- It shifts 1 by i bits to the left and then performs OR operation with n.
+- If the ith bit is not set then it will be set.
+- If the ith bit is already set then it will remain set.
+
+Example:
+
+$$
+n = 10101000
+$$
+
+$$
+1 << 3 = 00001000
+$$
+
+$$
+n\  | \ (1 << 3) = 10101000
+$$
+
+Code
+
+```java
+int setIthBit(int n, int i) {
+    return n | (1 << i);
+}
+```
+
+---
+
+### Unset ith bit
+
+We can unset the ith bit by using the following formula
+
+$$
+n\  \& \ \sim (1 << i)
+$$
+
+What does it do?
+
+- It shifts 1 by i bits to the left and then performs AND operation with n.
+- If the ith bit is set then it will be unset.
+- If the ith bit is already unset then it will remain unset.
+
+Example:
+
+$$
+n = 10101000
+$$
+
+$$
+1 << 3 = 00001000
+$$
+
+$$
+n\  \& \ \sim (1 << 3) = 10100000
+$$
+
+Code
+
+```java
+int unsetIthBit(int n, int i){
+ return n & ~(i << i);
+}
+```
+
+---
