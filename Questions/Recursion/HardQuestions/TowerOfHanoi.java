@@ -1,4 +1,4 @@
-package Questions.Recursion.Easy_Cllg_Questions;
+package Questions.Recursion.HardQuestions;
 
 public class TowerOfHanoi {
  public static int towerOfHanoi(int n, char fromRod, char toRod, char auxRod) {
