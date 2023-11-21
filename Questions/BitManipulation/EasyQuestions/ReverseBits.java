@@ -6,14 +6,14 @@ package Questions.BitManipulation.EasyQuestions;
 public class ReverseBits {
 
  public static long reverseBits(long num) {
-  long len = 0;
-  long temp = num;
-  while (temp != 0) {
-   len++;
-   temp = temp >> 1;
+  int rev = 0;
+  for (int i = 0; i < 32; i++) {
+   rev <<= 1;
+   rev |= (num & 1);
+   num >>= 1;
   }
 
-  return num << (32 - len);
+  return rev;
  }
 
  public static void main(String[] args) {
