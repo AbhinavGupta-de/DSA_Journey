@@ -7,26 +7,40 @@ public class SearchRotatedArray {
 
   public int searchInRotatedArray(int nums[], int target) {
 
-    int peak = peak(nums);
-    int firstTry = binarySearch(nums, target, 0, peak);
-    System.out.println(peak);
-    if (firstTry != -1)
-      return firstTry;
-    return binarySearch(nums, target, peak + 1, nums.length - 1);
+    int pivot = findPivot(nums);
 
+    if (pivot == -1) {
+      return binarySearch(nums, target, 0, nums.length - 1);
+    }
+
+    if (nums[pivot] == target) {
+      return pivot;
+    }
+
+    if (target > nums[pivot])
+      return -1;
+
+    if (nums[0] <= target) {
+      return binarySearch(nums, target, 0, pivot - 1);
+    }
+
+    return binarySearch(nums, target, pivot + 1, nums.length - 1);
   }
 
-  public int peak(int[] nums) {
+  public int findPivot(int nums[]) {
     int start = 0;
     int end = nums.length - 1;
-    while (start < end) {
-      int mid = (start + end) / 2;
-      if (nums[mid] > nums[mid + 1])
-        end = mid;
-      else
+
+    while (start <= end) {
+      int mid = start + (end - start) / 2;
+      if (nums[mid] >= nums[0]) {
         start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
     }
-    return start;
+
+    return end;
   }
 
   public int binarySearch(int nums[], int target, int start, int end) {
