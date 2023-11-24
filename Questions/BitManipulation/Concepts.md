@@ -231,3 +231,107 @@ int unsetIthBit(int n, int i){
 ```
 
 ---
+
+### Toggle ith bit
+
+We can toggle the ith bit by using the following formula
+
+$$
+n\  \oplus \ (1 << i)
+$$
+
+What does it do?
+
+- It shifts 1 by i bits to the left and then performs XOR operation with n.
+- If the ith bit is set then it will be unset.
+- If the ith bit is already unset then it will be set.
+
+Example:
+
+$$
+n = 10101000
+$$
+
+$$
+1 << 3 = 00001000
+$$
+
+$$
+n\  \oplus \ (1 << 3) = 10100000
+$$
+
+Code
+
+```java
+int toggleIthBit(int n, int i){
+ return n ^ (i << i);
+}
+```
+
+---
+
+### Find Minimum XOR value pair
+
+Given an array of integers, find the pair of integers in the array which have minimum XOR value. Report the minimum XOR value.
+
+Example:
+
+```
+Input: arr[] = {9, 5, 3}
+Output: 6
+Explanation: Minimum XOR value is 6 for the pair (9, 3).
+```
+
+Code
+
+```java
+int minxorpair(int n, int arr[]) {
+    Arrays.sort(arr);
+    int minxor = Integer.MAX_VALUE;
+    for (int i = 0; i < n - 1; i++) {
+        minxor = Math.min(minxor, arr[i] ^ arr[i + 1]);
+    }
+    return minxor;
+}
+```
+
+---
+
+### Find max AND value pair
+
+Given an array of integers, find the pair of integers in the array which have maximum AND value.
+
+Example:
+
+```
+Input: arr[] = {27, 18, 20}
+Output: 18
+Explanation: Maximum AND value is 26 for the pair (18, 27).
+```
+
+Code
+
+```java
+int maxAND (int arr[], int n) {
+  int ans = 0;
+  for (int i = 31; i >= 0; i--) {
+   int count = 0;
+   for (int j : arr) {
+    if ((j & (1 << i)) > 0) {
+     count++;
+    }
+   }
+
+   if (count >= 2) {
+    ans |= (1 << i);
+    for (int j : arr) {
+     if ((j & (1 << i)) > 0) {
+      j = 0;
+     }
+    }
+   }
+  }
+
+  return ans;
+}
+```
