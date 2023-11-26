@@ -5,8 +5,8 @@ package Questions.Searching.MediumQuestions;
  */
 public class KokoBanana {
 
- public int minVal(int[] nums) {
-  int min = Integer.MAX_VALUE;
+ public long minVal(int[] nums) {
+  long min = Long.MAX_VALUE;
 
   for (int i : nums) {
    min = Math.min(min, i);
@@ -15,8 +15,8 @@ public class KokoBanana {
   return min;
  }
 
- public int maxVal(int[] nums) {
-  int max = Integer.MIN_VALUE;
+ public long maxVal(int[] nums) {
+  long max = Long.MIN_VALUE;
 
   for (int i : nums) {
    max = Math.max(max, i);
@@ -26,13 +26,11 @@ public class KokoBanana {
  }
 
  public int minEatingSpeed(int[] piles, int h) {
-
   if (piles.length == 1) {
-   // System.out.print("...");
    return (int) Math.ceil((double) piles[0] / h);
   }
 
-  long start = minVal(piles);
+  long start = 1;
   long end = maxVal(piles);
 
   while (start <= end) {
@@ -52,13 +50,12 @@ public class KokoBanana {
   long count = 0;
 
   for (int i : nums) {
-   count += Math.ceil((double) i / mid);
+   count += (long) Math.ceil((double) i / mid);
+   if (count > Integer.MAX_VALUE) {
+    return false;
+   }
   }
 
-  if (count <= h)
-   return true;
-
-  return false;
+  return count <= h;
  }
-
 }
