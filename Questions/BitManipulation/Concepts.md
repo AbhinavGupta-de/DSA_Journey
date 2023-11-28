@@ -196,10 +196,10 @@ int setIthBit(int n, int i) {
 
 ### Unset ith bit
 
-We can unset the ith bit by using the following formula
+We can also unset the ith bit by first checking if the ith bit is set or not and then using using XOR with mask to unset the ith bit. Or we can unset the ith bit by using the following formula
 
 $$
-n\  \& \ \sim (1 << i)
+n\  \&\ \sim (1 << i)
 $$
 
 What does it do?
@@ -237,7 +237,7 @@ int unsetIthBit(int n, int i){
 We can toggle the ith bit by using the following formula
 
 $$
-n\  \oplus \ (1 << i)
+n\ \^\ \ (1 << i)
 $$
 
 What does it do?
@@ -257,7 +257,7 @@ $$
 $$
 
 $$
-n\  \oplus \ (1 << 3) = 10100000
+n\  \^\ \ (1 << 3) = 10100000
 $$
 
 Code
