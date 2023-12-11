@@ -14,36 +14,76 @@ public class FourSum {
 
   Arrays.sort(nums); // Sort the array to handle duplicates
 
-  int iterator = 1 << nums.length;
-  for (int i = 0; i < iterator; i++) {
-   List<Integer> temp = check(i, nums, target);
-   if (temp.size() == 4) {
-    ans.add(temp);
+  for (int i = 0; i < nums.length; i++) {
+   if (i > 0 && nums[i] == nums[i - 1])
+    continue; // Skip duplicates
+
+   int threeSumTarget = target - nums[i];
+   int[] threeSumArray = Arrays.copyOfRange(nums, i + 1, nums.length);
+   List<List<Integer>> threeSumAns = threeSum(threeSumArray, threeSumTarget);
+
+   for (List<Integer> threeSumList : threeSumAns) {
+    threeSumList.add(nums[i]);
+    ans.add(threeSumList);
+   }
+  }
+
+  return ans;
+
+ }
+
+ public List<List<Integer>> threeSum(int[] nums, int target) {
+  ArrayList<List<Integer>> ans = new ArrayList<>();
+
+  Arrays.sort(nums); // Sort the array to handle duplicates
+
+  for (int i = 0; i < nums.length; i++) {
+   if (i > 0 && nums[i] == nums[i - 1])
+    continue; // Skip duplicates
+
+   int twoSumTarget = target - nums[i];
+   int[] twoSumArray = Arrays.copyOfRange(nums, i + 1, nums.length);
+   List<List<Integer>> twoSumAns = twoSum(twoSumArray, twoSumTarget);
+
+   for (List<Integer> twoSumList : twoSumAns) {
+    twoSumList.add(nums[i]);
+    ans.add(twoSumList);
    }
   }
 
   return ans;
  }
 
- public List<Integer> check(int num, int[] nums, int target) {
-  List<Integer> temp = new ArrayList<>();
-  int sum = 0;
-  int n = nums.length - 1;
+ public List<List<Integer>> twoSum(int[] nums, int target) {
+  ArrayList<List<Integer>> ans = new ArrayList<>();
 
-  while (num > 0 && n >= 0) {
-   if ((num & 1) == 1) {
-    temp.add(nums[n]);
-    sum += nums[n];
+  int low = 0;
+  int high = nums.length - 1;
+
+  while (low < high) {
+   int sum = nums[low] + nums[high];
+
+   if (sum == target) {
+    ArrayList<Integer> temp = new ArrayList<>();
+    temp.add(nums[low]);
+    temp.add(nums[high]);
+    ans.add(temp);
+
+    while (low < high && nums[low] == nums[low + 1])
+     low++;
+    while (low < high && nums[high] == nums[high - 1])
+     high--;
+
+    low++;
+    high--;
+   } else if (sum < target) {
+    low++;
+   } else {
+    high--;
    }
-   n--;
-   num = num >> 1;
   }
 
-  if (sum == target) {
-   return temp;
-  }
-
-  return new ArrayList<>();
+  return ans;
  }
 
  public static void main(String[] args) {
