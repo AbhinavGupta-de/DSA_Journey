@@ -13,14 +13,24 @@ public class DeleteNode {
  }
 
  public void deleteNode(ListNode node) {
-  while (node.next != null && node.next.next != null) {
-   node.val = node.next.val;
-   node = node.next;
+  // while (node.next != null && node.next.next != null) {
+  //  node.val = node.next.val;
+  //  node = node.next;
+  // }
+
+  // if (node.next != null && node.next.next == null) {
+  //  node.val = node.next.val;
+  //  node.next = null;
+  // }
+
+  ListNode prev = null;
+
+  while(node.next != null) {
+      prev = node;
+      prev.val = node.next.val;
+      node = node.next;
   }
 
-  if (node.next != null && node.next.next == null) {
-   node.val = node.next.val;
-   node.next = null;
-  }
+  prev.next = null;
  }
 }
