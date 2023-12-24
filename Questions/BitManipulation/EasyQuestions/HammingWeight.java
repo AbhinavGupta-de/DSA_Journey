@@ -1,4 +1,4 @@
-package Questions.BitManipulation.EasyQuestions;
+package questions.bitmanipulation.easyquestions;
 
 public class HammingWeight {
  // Calculate number of 1 bits

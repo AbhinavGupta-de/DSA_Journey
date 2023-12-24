@@ -1,4 +1,4 @@
-package Questions.Hashing.EasyQuestions;
+package questions.hashing.easyquestions;
 
 import java.util.HashSet;
 

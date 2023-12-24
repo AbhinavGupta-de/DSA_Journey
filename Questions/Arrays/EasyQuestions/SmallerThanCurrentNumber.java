@@ -1,4 +1,4 @@
-package Questions.Arrays.EasyQuestions;
+package questions.arrays.easyquestions;
 
 // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
 public class SmallerThanCurrentNumber {

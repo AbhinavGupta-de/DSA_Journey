@@ -1,4 +1,4 @@
-package Questions.Arrays.EasyQuestions;
+package questions.arrays.easyquestions;
 
 // https://leetcode.com/problems/shuffle-the-array/
 public class ShuffleArray {

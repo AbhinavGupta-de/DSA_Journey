@@ -1,4 +1,4 @@
-package Questions.BitManipulation.EasyQuestions;
+package questions.bitmanipulation.easyquestions;
 
 public class ChangeIthBit {
  public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Questions.Arrays.EasyQuestions;
+package questions.arrays.easyquestions;
 
 // https://leetcode.com/problems/number-of-good-pairs/
 public class GoodPairs {

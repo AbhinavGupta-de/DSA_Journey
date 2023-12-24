@@ -1,4 +1,4 @@
-package Questions.BitManipulation.EasyQuestions;
+package questions.bitmanipulation.easyquestions;
 
 /**
  * ReverseBits

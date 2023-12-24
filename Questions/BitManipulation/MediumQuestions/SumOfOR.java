@@ -1,4 +1,4 @@
-package Questions.BitManipulation.MediumQuestions;
+package questions.bitmanipulation.mediumquestions;
 
 public class SumOfOR {
  public long sumOR(int[] A) {

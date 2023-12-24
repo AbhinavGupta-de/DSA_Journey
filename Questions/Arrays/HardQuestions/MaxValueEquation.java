@@ -1,4 +1,4 @@
-package Questions.Arrays.HardQuestions;
+package questions.arrays.hardquestions;
 
 public class MaxValueEquation {
 

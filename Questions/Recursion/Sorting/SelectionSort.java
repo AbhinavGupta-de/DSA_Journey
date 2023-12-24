@@ -1,4 +1,4 @@
-package Questions.Recursion.Sorting;
+package questions.recursion.sorting;
 
 import java.util.Arrays;
 

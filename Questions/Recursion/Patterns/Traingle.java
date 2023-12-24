@@ -1,4 +1,4 @@
-package Questions.Recursion.Patterns;
+package questions.recursion.patterns;
 
 /*
  * *****

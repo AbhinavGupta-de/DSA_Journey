@@ -1,4 +1,4 @@
-package Questions.Arrays.MediumQuestions;
+package questions.arrays.mediumquestions;
 
 public class FirstAndLastPosition {
  public int[] searchRange(int[] nums, int key) {

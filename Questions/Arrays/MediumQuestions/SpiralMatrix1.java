@@ -1,4 +1,4 @@
-package Questions.Arrays.MediumQuestions;
+package questions.arrays.mediumquestions;
 
 import java.util.ArrayList;
 import java.util.List;

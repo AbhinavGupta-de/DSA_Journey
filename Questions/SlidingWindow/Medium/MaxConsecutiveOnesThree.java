@@ -1,4 +1,4 @@
-package Questions.SlidingWindow.Medium;
+package questions.slidingwindow.medium;
 
 public class MaxConsecutiveOnesThree {
 

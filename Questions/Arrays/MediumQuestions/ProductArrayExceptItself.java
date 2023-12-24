@@ -1,4 +1,4 @@
-package Questions.Arrays.MediumQuestions;
+package questions.arrays.mediumquestions;
 
 public class ProductArrayExceptItself {
  public int[] productExceptSelf(int[] nums) {
