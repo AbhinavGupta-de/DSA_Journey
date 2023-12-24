@@ -6,7 +6,7 @@ public class ReversePair {
   return mergeSort(nums, 0, nums.length);
  }
 
- public int mergeSort(int[] nums, int start, int end) {
+ private int mergeSort(int[] nums, int start, int end) {
 
   if (start >= end)
    return 0;
@@ -20,8 +20,52 @@ public class ReversePair {
 
  }
 
- public int merge(int[] nums, int start, int mid, int end) {
+ private int merge(int[] nums, int start, int mid, int end) {
   int j = mid + 1;
+  int revCount = 0;
+
+  for (int i = start; i <= mid; i++) {
+   if (j <= end && nums[i] > 2 * (long) (nums[j])) {
+    j++;
+   }
+   revCount += (j - (mid + 1));
+
+  }
+
+  mergeSubArray(nums, start, mid, end);
+
+  return revCount;
  }
 
+ public void mergeSubArray(int[] nums, int start, int mid, int end) {
+
+  int i = start;
+  int j = mid + 1;
+
+  int[] temp = new int[end - (start - 1)];
+  int index = 0;
+
+  while (i <= mid && j <= end) {
+   if (nums[i] < nums[j]) {
+    temp[index++] = nums[i++];
+   } else {
+    temp[index++] = nums[j++];
+   }
+  }
+
+  if (i > mid) {
+   while (j <= end) {
+    temp[index++] = nums[j++];
+   }
+  } else {
+   while (i <= end) {
+    temp[index++] = nums[i++];
+   }
+  }
+
+  for (int k = start; k <= end; k++) {
+   nums[k] = temp[k - start];
+  }
+
+ }
 }
