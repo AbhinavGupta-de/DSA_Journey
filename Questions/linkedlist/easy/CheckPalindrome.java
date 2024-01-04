@@ -1,5 +1,7 @@
 package questions.linkedlist.easy;
 
+import questions.linkedlist.ListNode;
+
 public class CheckPalindrome {
 
  public boolean isPalindrome(ListNode head) {

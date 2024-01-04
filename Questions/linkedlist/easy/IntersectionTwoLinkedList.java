@@ -1,5 +1,7 @@
 package questions.linkedlist.easy;
 
+import questions.linkedlist.ListNode;
+
 public class IntersectionTwoLinkedList {
  public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
   // * 1st appraoch is to iterate over the list and put it in map
