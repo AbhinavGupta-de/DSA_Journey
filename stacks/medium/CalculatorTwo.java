@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class CalculatorTwo {
 
- public int precedence(char c) {
+ private int precedence(char c) {
   if (c == '^')
    return 3;
   else if (c == '*' || c == '/')
@@ -12,23 +12,27 @@ public class CalculatorTwo {
   else if (c == '+' || c == '-')
    return 1;
 
-  return 0;
+  return -1;
  }
 
- public String infixPostFix(String input) {
+ private String infixPostFix(String input) {
   StringBuilder stb = new StringBuilder();
   Stack<Character> stack = new Stack<>();
 
   for (char c : input.toCharArray()) {
 
-   if (c >= 'a' && c <= 'z') {
+   // Skip spaces
+   if (c == ' ')
+    continue;
+
+   // Check if the character is an operand (either a letter or a number)
+   if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
     stb.append(c);
    } else if (c == '(')
     stack.push(c);
    else if (c == ')') {
     while (!stack.isEmpty() && stack.peek() != '(') {
-     stb.append(c);
-     stack.pop();
+     stb.append(stack.pop());
     }
 
     if (!stack.isEmpty())
@@ -48,8 +52,55 @@ public class CalculatorTwo {
   return stb.toString();
  }
 
- public int calculate(String s) {
+ private int evalRPN(String input) {
 
-  return 0;
+  Stack<Long> stack = new Stack<>();
+
+  for (char c : input.toCharArray()) {
+
+   if (c == '+') {
+    long num2 = stack.pop();
+    long num1 = stack.pop();
+
+    stack.push(num1 + num2);
+   } else if (c == '*') {
+    long num2 = stack.pop();
+    long num1 = stack.pop();
+
+    stack.push(num1 * num2);
+   } else if (c == '-') {
+    long num2 = stack.pop();
+    long num1 = stack.pop();
+
+    stack.push(num1 - num2);
+   }
+
+   else if (c == '/') {
+    long num2 = stack.pop();
+    long num1 = stack.pop();
+
+    stack.push(num1 / num2);
+   }
+
+   else {
+    stack.push(Long.parseLong(c + ""));
+   }
+  }
+
+  StringBuilder result = new StringBuilder();
+
+  while (!stack.isEmpty()) {
+   result.append(stack.pop());
+  }
+
+  return Integer.parseInt(result.reverse().toString());
+ }
+
+ private int eval(String input) {
+  return evalRPN(infixPostFix(input));
+ }
+
+ public int calculate(String s) {
+  return eval(s);
  }
 }
