@@ -28,4 +28,37 @@ public class LevelOrderTraversal {
   levelOrderTraversal(root.right, level + 1, result);
 
  }
+
+ public List<List<Integer>> levelOrderQueue(TreeNode root) {
+
+  Queue<TreeNode> queue = new LinkedList<>();
+  List<List<Integer>> result = new ArrayList<>();
+  queue.add(root);
+
+  while (!queue.isEmpty()) {
+
+   List<Integer> list = new ArrayList<>();
+
+   int size = queue.size();
+
+   for (int i = 0; i < size; i++) {
+
+    TreeNode current = queue.peek();
+    queue.poll();
+
+    if (root.left != null)
+     queue.add(current.left);
+    if (root.right != null)
+     queue.add(current.right);
+
+    list.add((Integer) current.val);
+
+   }
+
+   result.add(list);
+  }
+
+  return result;
+ }
+
 }
