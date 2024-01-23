@@ -1,7 +1,8 @@
-package tree.medium;
+package questions.tree.medium;
 
-import tree.TreeNode;
 import java.util.*;
+
+import questions.tree.TreeNode;
 
 public class LevelOrderTraversal {
  public List<List<Integer>> levelOrder(TreeNode root) {

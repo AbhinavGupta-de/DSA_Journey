@@ -1,10 +1,10 @@
-package tree.medium;
+package questions.tree.medium;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import tree.TreeNode;
+import questions.tree.TreeNode;
 
 public class ZigZagLevelOrderTraversal {
  public List<List<Integer>> zigzagLevelOrder(TreeNode root) {

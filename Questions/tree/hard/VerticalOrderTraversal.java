@@ -1,11 +1,11 @@
-package tree.hard;
+package questions.tree.hard;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import tree.TreeNode;
+import questions.tree.TreeNode;
 
 public class VerticalOrderTraversal {
 

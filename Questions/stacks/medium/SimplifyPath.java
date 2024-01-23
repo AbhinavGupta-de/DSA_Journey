@@ -1,4 +1,4 @@
-package stacks.medium;
+package questions.stacks.medium;
 
 public class SimplifyPath {
  public String simplifyPath(String path) {

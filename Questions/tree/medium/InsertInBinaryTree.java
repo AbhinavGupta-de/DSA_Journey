@@ -1,6 +1,6 @@
-package tree.medium;
+package questions.tree.medium;
 
-import tree.TreeNode;
+import questions.tree.TreeNode;
 
 public class InsertInBinaryTree {
 

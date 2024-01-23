@@ -1,4 +1,4 @@
-package stacks.medium;
+package questions.stacks.medium;
 
 import java.util.*;
 

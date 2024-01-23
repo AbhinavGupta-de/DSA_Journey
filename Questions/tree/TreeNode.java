@@ -1,4 +1,4 @@
-package tree;
+package questions.tree;
 
 public class TreeNode {
  public Object val;

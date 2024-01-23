@@ -1,4 +1,4 @@
-package stacks.easy;
+package questions.stacks.easy;
 
 public class BackspaceStringCompare {
 

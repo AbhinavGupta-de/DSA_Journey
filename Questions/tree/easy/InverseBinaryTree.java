@@ -1,6 +1,6 @@
-package tree.easy;
+package questions.tree.easy;
 
-import tree.TreeNode;
+import questions.tree.TreeNode;
 
 /**
  * InverseBinaryTree
