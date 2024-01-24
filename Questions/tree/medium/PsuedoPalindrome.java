@@ -4,38 +4,43 @@ import questions.tree.TreeNode;
 
 public class PsuedoPalindrome {
 
- public int psuedoPalindromePaths(TreeNode root) {
+ public int pseudoPalindromicPaths(TreeNode root) {
 
   if (root == null)
    return 0;
 
-  return count(root, 0, 0);
+  return count(root, 0);
  }
 
- public int count(TreeNode root, int num, int result) {
+ public int count(TreeNode root, int num) {
 
-  if (root == null) {
-   int count = 0;
-   while (num > 0) {
-    if ((num & 1) == 1)
-     count++;
-
-    num = num << 1;
-   }
-
-   if (count % 2 == 0)
-    return result + 1;
-
-   return result;
-  }
+  if (root == null)
+   return 0;
 
   num = num ^ (1 << (Integer) root.val);
 
-  count(root.left, num, result);
-  count(root.right, num, result);
+  if (root.left == null && root.right == null) {
+   // counting bits
+   // int count = 0;
+   // while (num > 0) {
+   // if ((num & 1) == 1)
+   // count++;
 
-  return result;
+   // num = num >> 1;
+   // }
+
+   // if (count < 2)
+   // return 1;
+
+   // return 0;
+
+   if (num == 0 || ((num & (num - 1)) == 0))
+    return 1;
+
+   return 0;
+  }
+
+  return count(root.left, num) + count(root.right, num);
 
  }
-
 }
