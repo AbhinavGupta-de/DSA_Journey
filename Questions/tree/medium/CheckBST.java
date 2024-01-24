@@ -40,7 +40,7 @@ public class CheckBST {
   Data l = isValid(root.left);
   Data r = isValid(root.right);
 
-  if ((l.isValid == false || r.isValid == false) || ((long) root.val <= l.max || (long) root.val >= r.min)) {
+  if (!l.isValid || !r.isValid || (long) root.val <= l.max || (long) root.val >= r.min) {
    return new Data(Long.MIN_VALUE, Long.MAX_VALUE, false);
   }
 
