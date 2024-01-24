@@ -46,7 +46,7 @@ public class HeightBalancedTree {
 
   int height = Math.max(l, r) + 1;
 
-  if (l == -1 || r == -1 || Math.abs(l - r) < 2) {
+  if (l == -1 || r == -1 || Math.abs(l - r) >= 2) {
    return -1;
   }
 
