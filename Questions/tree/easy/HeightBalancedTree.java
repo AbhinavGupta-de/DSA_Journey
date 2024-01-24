@@ -1,4 +1,4 @@
-package questions.tree.hard;
+package questions.tree.easy;
 
 import questions.tree.TreeNode;
 
