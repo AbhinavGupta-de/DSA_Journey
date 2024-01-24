@@ -35,16 +35,19 @@ public class CheckBST {
 
  public Data isValid(TreeNode root) {
   if (root == null)
-   return new Data(Long.MIN_VALUE, Long.MAX_VALUE, true);
+   return new Data(Long.MAX_VALUE, Long.MIN_VALUE, true);
 
   Data l = isValid(root.left);
   Data r = isValid(root.right);
 
-  if (!l.isValid || !r.isValid || (long) root.val <= l.max || (long) root.val >= r.min) {
+  if ((l.isValid == false || r.isValid == false) || ((long) root.val <= l.max || (long) root.val >= r.min)) {
    return new Data(Long.MIN_VALUE, Long.MAX_VALUE, false);
   }
 
-  return new Data(Math.max((Long) root.val, l.max), Math.min((Long) root.val, r.min), true);
+  Data ans = new Data((Long) root.val, (Long) root.val, true);
+  ans.min = Math.min(ans.min, l.min);
+  ans.max = Math.max(ans.max, r.max);
+  return ans;
  }
 
 }
