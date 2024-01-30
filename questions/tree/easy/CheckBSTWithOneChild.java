@@ -10,23 +10,30 @@ import questions.tree.TreeNode;
 public class CheckBSTWithOneChild {
 
  public String checkOneChildBST(ArrayList<Integer> list) {
-
-  TreeNode root = new TreeNode(list.get(0));
-
-  TreeNode curr = root;
-
-  for (int i = 1; i < list.size(); i++) {
-
-   if (list.get(i) > (Integer) curr.val) {
-    curr.right = new TreeNode(list.get(i));
-   } else {
-    curr.left = new TreeNode(list.get(i));
-   }
-
-   curr = (curr.left == null) ? curr.left : curr.right;
-
+  int n = list.size();
+  if (n <= 2) {
+   return "YES";
   }
 
+  int min = Integer.MIN_VALUE;
+  int max = Integer.MAX_VALUE;
+
+  for (int i = 1; i < n; i++) {
+   int curr = list.get(i);
+   int parent = list.get(i - 1);
+
+   if (curr < min || curr > max) {
+    return "NO";
+   }
+
+   if (curr < parent) {
+    max = parent;
+   } else {
+    min = parent;
+   }
+  }
+
+  return "YES";
  }
 
 }
