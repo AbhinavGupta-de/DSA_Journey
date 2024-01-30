@@ -1,7 +1,6 @@
 package questions.tree.easy;
 
 import java.util.ArrayList;
-import questions.tree.TreeNode;
 
 /**
  * CheckBSTWithOneChild
