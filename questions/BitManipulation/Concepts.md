@@ -48,6 +48,10 @@ $$
 \log_x{n} = y
 $$
 
+$$
+digit(x)_n = \log_n{x} + 1 = y + 1
+$$
+
 This means that n has int(y) + 1 number of digits in base x.
 
 ## Pascal's Traingle's Sum
@@ -322,7 +326,7 @@ int maxAND (int arr[], int n) {
     }
    }
 
-   if (count >= 2) {
+   if (count >= n) {
     ans |= (1 << i);
     for (int j : arr) {
      if ((j & (1 << i)) > 0) {
