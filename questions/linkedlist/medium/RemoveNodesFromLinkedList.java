@@ -2,8 +2,6 @@ package questions.linkedlist.medium;
 
 import questions.linkedlist.ListNode;
 
-import java.util.*;
-
 public class RemoveNodesFromLinkedList {
 
  // 5 2 13 3 8
