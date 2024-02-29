@@ -8,7 +8,6 @@ public class MaximumXORPair {
  }
 
  // using trie
-
  public int findMaximumXOR(int arr[]) {
 
   int n = arr.length;
