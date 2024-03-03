@@ -1,4 +1,4 @@
-package questions.linkedlist.easy;
+package linkedlist.easy;
 
 import questions.linkedlist.ListNode;
 
