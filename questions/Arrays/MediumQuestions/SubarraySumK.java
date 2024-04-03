@@ -14,6 +14,7 @@ public class SubarraySumK {
    preffixSum[i] = preffixSum[i - 1] + nums[i];
   }
 
+  return 0;
  }
 
 }

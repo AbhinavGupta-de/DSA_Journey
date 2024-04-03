@@ -1,7 +1,5 @@
 package extras;
 
-import java.util.*;
-
 public class PairSumDivisibleByM {
  public int pairCount(int[] A, int B) {
 
@@ -11,19 +9,20 @@ public class PairSumDivisibleByM {
    modulo[i] = A[i] % B;
   }
 
-  return countPairs(modulo, B);
+  // return countPairs(modulo, B);
+  return 0;
 
  }
 
- public int countPairs(int[] nums, int target) {
+ // public int countPairs(int[] nums, int target) {
 
-  //
+ // //
 
- }
+ // }
 
- private long nC2(int num) {
-  return ((long) num - 1L) * (num) / 2L;
- }
+ // private long nC2(int num) {
+ // return ((long) num - 1L) * (num) / 2L;
+ // }
 
  public static void main(String[] args) {
   int[] nums = { 1, 2, 3, 4, 5 };
