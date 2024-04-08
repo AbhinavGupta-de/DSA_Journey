@@ -30,4 +30,29 @@ public class LongestCommonSubsequence {
   return nums[i][j];
 
  }
+
+ // Iterative approach
+ public int longestCommonSubsequenceIterative(String text1, String text2) {
+
+  int n = text2.length();
+  int m = text1.length();
+
+  if (n == 0 || m == 0)
+   return 0;
+
+  int[][] dp = new int[n + 1][m + 1];
+
+  for (int i = 1; i < n + 1; i++) {
+   for (int j = 1; j < m + 1; j++) {
+    if (text2.charAt(i - 1) == text1.charAt(j - 1)) {
+     dp[i][j] = dp[i - 1][j - 1] + 1;
+    } else {
+     dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+    }
+   }
+  }
+
+  return dp[n][m];
+
+ }
 }
