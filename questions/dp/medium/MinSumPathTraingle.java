@@ -1,4 +1,4 @@
-package dp.medium;
+package questions.dp.medium;
 
 import java.util.*;
 
