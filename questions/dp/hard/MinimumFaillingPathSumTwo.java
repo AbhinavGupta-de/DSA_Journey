@@ -1,36 +1,55 @@
 package questions.dp.hard;
 
-import java.util.Arrays;
+// leetcode 1289
 
 public class MinimumFaillingPathSumTwo {
  public int minFallingPathSum(int[][] grid) {
 
-  int[][] dp = new int[grid.length][grid.length + 1];
-  Arrays.stream(dp).forEach(a -> Arrays.fill(a, -1));
-  return helper(grid, 0, grid.length, dp, grid.length);
+  int[] rowMal = helper(grid, 0);
 
+  for (int i = 1; i < grid.length; i++) {
+   for (int j = 0; j < grid.length; j++) {
+    if (j != rowMal[2]) {
+     grid[i][j] += rowMal[0];
+    } else {
+     grid[i][j] += rowMal[1];
+    }
+   }
+   rowMal = helper(grid, i);
+  }
+
+  return rowMal[0];
  }
 
- private int helper(int[][] grid, int row, int prevCol, int[][] dp, int n) {
-  if (row > n || prevCol >= n)
-   return 0;
+ private int[] helper(int[][] grid, int row) {
 
-  if (row == n)
-   return 1;
+  int[] props = new int[3];
 
-  if (dp[row][prevCol] != -1)
-   return dp[row][prevCol];
+  int min = Integer.MAX_VALUE;
+  int minPos = grid.length;
 
-  int sum = 0;
-  for (int i = 0; i < n; i++) {
-   if (i != prevCol) {
-    int temp = prevCol;
-    sum += helper(grid, row + 1, i, dp, n);
-    prevCol = temp;
+  for (int i = 0; i < grid.length; i++) {
+   if (min > grid[row][i]) {
+    min = grid[row][i];
+    minPos = i;
    }
   }
 
-  return dp[row][prevCol] = sum;
+  props[0] = min;
+  props[2] = minPos;
 
+  int secondMin = Integer.MAX_VALUE;
+
+  for (int i = 0; i < grid.length; i++) {
+   if (i != minPos) {
+    if (secondMin > grid[row][i]) {
+     secondMin = grid[row][i];
+    }
+   }
+  }
+
+  props[1] = secondMin;
+  return props;
  }
+
 }
