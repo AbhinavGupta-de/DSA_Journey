@@ -15,22 +15,22 @@ public class CoinSumInfinite {
  }
 
  private int helper(int amount, int[] coins, int pos, int[][] dp) {
+  int MOD = 1000000007;
   if (amount == 0)
    return 1;
 
   if (pos >= coins.length)
    return 0;
 
+  if (amount < 0)
+   return 0;
+
   if (dp[pos][amount] != -2)
    return dp[pos][amount];
 
-  int n = 0;
-  int ways = 0;
-  while (n * coins[pos] <= amount) {
-   ways = (ways + helper(amount - n * coins[pos], coins, pos + 1, dp));
-   n++;
-  }
-
+  int ways1 = helper(amount - coins[pos], coins, pos, dp);
+  int ways2 = helper(amount, coins, pos + 1, dp);
+  int ways = ((ways1 % MOD) + (ways2 % MOD)) % MOD;
   return dp[pos][amount] = ways;
  }
 }
