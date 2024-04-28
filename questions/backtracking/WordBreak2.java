@@ -3,30 +3,25 @@ package backtracking;
 import java.util.*;
 
 public class WordBreak2 {
- public List<String> wordBreak(String s, List<String> wordDict) {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        List<String> list = new ArrayList<>();
+        HashSet<String> set = new HashSet<>(wordDict);
+        helper(s, 0, set, list, "");
+        return list;
+    }
 
- }
+    private void helper(String s, int start, HashSet<String> dict, List<String> ans, String curr) {
+        int n = s.length();
+        if (start == n) {
+            ans.add(curr.trim());
+        }
 
- private void helper(String s, List<String> wordDict, int start, StringBuilder test, StringBuilder result) {
-     if(start == s.length()){
-         wordDict.add(result.toString());
-         return;
-     }
+        StringBuilder str = new StringBuilder();
 
-
-     for(int i = start; i < s.length(); i++) {
-         test.append(s.charAt(i));
-         int start = 0;
-         if(isValid(test, wordDict)){
-             start = result.length() - 1;
-             result.append(" " + test);
-             helper(s, wordDict, start + 1, test, result);
-         } else {
-             continue;
-         }
-
-         result.r
-
-     }
- }
+        for (int i = start; i < n; i++) {
+            str.append(s.charAt(i));
+            if (dict.contains(str.toString()))
+                helper(s, i + 1, dict, ans, curr + " " + str.toString());
+        }
+    }
 }
