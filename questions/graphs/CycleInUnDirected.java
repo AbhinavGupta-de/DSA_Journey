@@ -28,7 +28,7 @@ public class CycleInUnDirected {
     private boolean hasCycle(int node, Map<Integer, ArrayList<Integer>> adjList, boolean[] visited, int parent) {
         visited[node] = true;
 
-        for(int neighbor : adjList.getOrDefault(node, new ArrayList<>())) {
+        for(int neighbor : adjList.get(node)) {
             if(!visited[neighbor]) {
                 if(hasCycle(neighbor, adjList, visited, node)) {
                     return true;
