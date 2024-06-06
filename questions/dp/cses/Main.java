@@ -2,45 +2,32 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static int coinCombinations(int x, int[] coins) {
-        int mod = (int) 1e9 + 7;
+    private static int diceCombinations(int target, int[] dp) {
+        if(target == 0) return 1;
+        if(target < 0) return 0;
+        if(dp[target] != -1) return dp[target];
 
-        int[] dp = new int[x + 1];
-
-        for(int curr = x; curr >= 0; curr--) {
-           if(curr == x) {
-               dp[curr] = 1;
-               continue;
-           }
-
-           for(int i = 0; i < coins.length; i++) {
-               if(curr + coins[i] <= x) {
-                   dp[curr] = (dp[curr] + dp[curr + coins[i]]) % mod;
-               }
-           }
+        int ways = 0;
+        for(int i = 1; i <= 6; i++) {
+            ways = (ways + diceCombinations(target - i, dp)) % 1000000007;
         }
 
-        return dp[0];
-
+        return dp[target] = ways;
     }
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter wr = new PrintWriter(System.out);
+        int n = Integer.parseInt(br.readLine().trim());
 
-        String[] input = br.readLine().trim().split(" ");
-        int n = Integer.parseInt(input[0]);
-        int x = Integer.parseInt(input[1]);
-        int[] coins = new int[n];
-        String[] input1 = br.readLine().trim().split(" ");
-        for (int i = 0; i < n; i++) {
-            coins[i] = Integer.parseInt(input1[i]);
-        }
-
-        int ans = coinCombinations(x, coins);
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, -1);
+        int ans = diceCombinations(n, dp);
         wr.println(ans);
 
         wr.close();
         br.close();
+
     }
 }
