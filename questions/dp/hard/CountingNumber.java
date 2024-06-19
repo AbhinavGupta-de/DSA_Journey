@@ -1,7 +1,7 @@
-import java.io.*;
-import java.util.*;
+package questions.dp.hard;
 
-public class Main {
+public class CountingNumber {
+
     private static long solve(long a, long b) {
         long left = getNumbers(a - 1);
         long right = getNumbers(b);
@@ -33,15 +33,6 @@ public class Main {
 
         return dp[pos][prev][leading_zero][tight] = ans;
     }
+}
 
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        long a = sc.nextLong();
-        long b = sc.nextLong();
-        if(b == 0) {
-            System.out.println(1);
-            return;
-        }
-        System.out.println(solve(a, b));
-    }
 }
