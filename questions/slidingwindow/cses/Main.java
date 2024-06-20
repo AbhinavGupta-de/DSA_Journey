@@ -1,38 +1,24 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 
-    private static long countSubarrayWithDistinctValues(long[] nums, long k) {
-        long n = nums.length;
-        HashMap<Long, Long> map = new HashMap<>();
-        int l = 0;
-        int r = 0;
-        int dist = 0; // Correctly initialize dist to 0
-        long count = 0L; // This should accumulate the count
+    public static long sum(long[] arr, long X) {
+        int N = arr.length;
 
-        while (r < n) {
-            if (!map.containsKey(nums[r]) || map.get(nums[r]) == 0) {
-                dist++;
-            }
-            map.put(nums[r], map.getOrDefault(nums[r], 0L) + 1L);
+        Map<Long, Long> prefSums = new HashMap<>();
+        prefSums.put(0L, 1L);
 
-            while (dist > k) {
-                map.put(nums[l], map.get(nums[l]) - 1);
-                if (map.get(nums[l]) == 0) {
-                    dist--;
-                }
-                l++;
-            }
+        long pref = 0L;
+        long cnt = 0L;
 
-            count += r - l + 1; // Accumulate the count correctly
-
-            r++;
+        for (int i = 0; i < N; ++i) {
+            pref += arr[i];
+            cnt += prefSums.getOrDefault(pref - X, 0L);
+            prefSums.put(pref, prefSums.getOrDefault(pref, 0L) + 1);
         }
 
-        return count;
+        return cnt;
     }
 
     public static void main(String[] args) throws IOException {
@@ -40,7 +26,7 @@ public class Main {
 
         String[] input = br.readLine().split(" ");
         int n = Integer.parseInt(input[0]);
-        long k = Long.parseLong(input[1]);
+        long target = Long.parseLong(input[1]);
 
         long[] nums = new long[n];
         String[] numStrings = br.readLine().split(" ");
@@ -48,6 +34,6 @@ public class Main {
             nums[i] = Long.parseLong(numStrings[i]);
         }
 
-        System.out.println(countSubarrayWithDistinctValues(nums, k));
+        System.out.println(sum(nums, target));
     }
 }
