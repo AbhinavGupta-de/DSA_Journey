@@ -10,13 +10,11 @@ public class CoinCombination2 {
         int MOD = (int) 1e9 + 7;
 
        int ans1 = coinCombinations2(x, i + 1, coins);
-     int ans2 = coinCombinations2(x - coins[i], i, coins);
+        int ans2 = coinCombinations2(x - coins[i], i, coins);
 
      return (ans1 + ans2) % MOD;
 
     }
-
-//    now iterative
 
     private static int coinCombinations2(int x, int[] coins) {
         int MOD = (int) 1e9 + 7;
