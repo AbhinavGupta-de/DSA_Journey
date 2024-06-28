@@ -1,13 +1,24 @@
-#include <iostream>
 #include <vector>
 #include <bits/stdc++.h>
-using namespace std;
 
-const int MOD = 1e9 + 7;
+using namespace std;
 
 int dp[5001][5001];
 
-long editDistance(string& a, string& b) {
+long editDistance(int i, int j, string a, string b) {
+
+    if(i < 0 && j < 0) return 0;
+    if(i < 0) return j+1;
+    if(j < 0) return i+1;
+
+    if(dp[i][j] != -1) return dp[i][j];
+
+    if(a[i] == b[j]) return dp[i][j] = editDistance(i-1, j-1, a, b);
+
+    return dp[i][j] = 1 + min(editDistance(i-1, j-1, a, b), min(editDistance(i-1, j, a, b), editDistance(i, j-1, a, b)));
+}
+
+long editDistance(string a, string b) {
     memset(dp, -1, sizeof(dp));
 
     for(int i = 0; i < a.size(); i++) {
@@ -29,20 +40,4 @@ long editDistance(string& a, string& b) {
     }
 
     return dp[a.size()-1][b.size()-1];
-}
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    string a, b;
-
-    cin >> a >> b;
-
-//    memset(dp, -1, sizeof(dp));
-
-    long ans = editDistance(a, b);
-    cout << ans << endl;
-
-    return 0;
 }
