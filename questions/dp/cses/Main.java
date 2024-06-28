@@ -2,46 +2,31 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static long solve(long a, long b) {
-        long left = getNumbers(a - 1);
-        long right = getNumbers(b);
-        return right - left;
+    private static long solve(long[] nums) {
+        long[][] dp = new long[nums.length][nums.length];
+        Arrays.stream(dp).forEach(k -> Arrays.fill(k, -1));
+        return helper(0, nums.length - 1, nums, dp);
     }
 
-    private static long getNumbers(long n) {
-        if (n == 0) return 1;
-        String num = Long.toString(n);
-        long[][][][] dp = new long[20][10][2][2];
-        Arrays.stream(dp).forEach(k -> Arrays.stream(k).forEach(l -> Arrays.stream(l).forEach(d -> Arrays.fill(d, -1))));
-        return helper(num, 0, 0, 1, 1, dp);
-    }
+    private static long helper(int start, int end, long[] nums, long[][] dp) {
+        if (start == end) return nums[start];
+        if(dp[start][end] != -1) return dp[start][end];
 
-    private static long helper(String s, int pos, int prev, int leading_zero, int tight, long[][][][] dp) {
-        if (pos == s.length()) return 1;
-        if (dp[pos][prev][leading_zero][tight] != -1) return dp[pos][prev][leading_zero][tight];
+        long left = nums[start] - helper(start + 1, end, nums, dp);
+        long right = nums[end] - helper(start, end - 1, nums, dp);
 
-        int max = (tight == 1) ? s.charAt(pos) - '0' : 9;
-        long ans = 0;
-
-        for (int i = 0; i <= max; i++) {
-            int newTight = (tight == 1 && i == max) ? 1 : 0;
-            if (i == prev && leading_zero == 0) continue;
-
-            int newLeadingZero = (leading_zero == 1 && i == 0) ? 1 : 0;
-            ans += helper(s, pos + 1, i, newLeadingZero, newTight, dp);
-        }
-
-        return dp[pos][prev][leading_zero][tight] = ans;
+        return dp[start][end] = Math.max(left, right);
     }
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        long a = sc.nextLong();
-        long b = sc.nextLong();
-        if(b == 0) {
-            System.out.println(1);
-            return;
+        int n = sc.nextInt();
+        long[] nums = new long[n];
+
+        for(int i = 0; i < n; i++) {
+            nums[i] = sc.nextLong();
         }
-        System.out.println(solve(a, b));
+
+        System.out.println(solve(nums));
     }
 }
