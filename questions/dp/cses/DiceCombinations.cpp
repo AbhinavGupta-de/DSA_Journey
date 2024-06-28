@@ -1,6 +1,6 @@
-#include <iostream>
 #include <vector>
 #include <bits/stdc++.h>
+
 using namespace std;
 
 const int MOD = 1e9 + 7;
@@ -22,20 +22,4 @@ long diceCombinations(int target) {
     }
 
     return dp[target] = ways;
-}
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int target;
-
-    cin >> target;
-
-    memset(dp, -1, sizeof(dp));
-
-    long ans = diceCombinations(target);
-    cout << ans << endl;
-
-    return 0;
 }
