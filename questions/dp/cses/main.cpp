@@ -5,33 +5,45 @@ using namespace std;
 
 const int MOD = 1e9 + 7;
 
-long long dp[1001][1001];
+long long dp[2][100001];
 
-long long gridPath(vector<vector<char>> &grid, int i, int j, int n) {
-    if (i == n - 1 && j == n - 1) return grid[i][j] == '.';
-    if (i >= n || j >= n) return 0;
-    if (dp[i][j] != -1) return dp[i][j];
-    if (grid[i][j] == '*') return 0;
-    return dp[i][j] = (gridPath(grid, i + 1, j, n)%MOD + gridPath(grid, i, j + 1, n)%MOD)%MOD;
+long long maxPages(vector<int>& prices, vector<int>& pages, int n, int x) {
+
+
+    for(int i = 1; i <= n; i++) {
+        for(int j = 0; j <= x; j++) {
+           if(j == 0) continue;
+           dp[i%2][j] = dp[(i-1)%2][j];
+           if(prices[i-1] <= j) {
+               dp[i%2][j] = max(dp[i%2][j], pages[i-1] + dp[(i-1)%2][j-prices[i-1]]);
+           }
+        }
+    }
+
+    return dp[(n)%2][x];
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
+    int n, x;
 
-    cin >> n;
+    cin >> n >> x;
 
-    vector<vector<char>> grid(n, vector<char>(n));
+    vector<int> prices(n), pages(n);
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> grid[i][j];
-        }
+    for(int i = 0; i < n; i++) {
+        cin >> prices[i];
     }
 
-    memset(dp, -1, sizeof(dp));
+    for(int i = 0; i < n; i++) {
+        cin >> pages[i];
+    }
 
-    cout << gridPath(grid, 0, 0, n) % MOD << endl;
+    memset(dp, 0, sizeof(dp));
+
+    cout << maxPages(prices, pages, n, x) << endl;
+
+    return 0;
 }
