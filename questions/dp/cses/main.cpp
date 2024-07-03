@@ -1,49 +1,43 @@
 #include <iostream>
 #include <vector>
-#include <bits/stdc++.h>
+#include <cstring>
 using namespace std;
 
-const int MOD = 1e9 + 7;
+const long long MOD = 1e9 + 7;
+long long dp[100001][101];
 
-long long dp[2][100001];
-
-long long maxPages(vector<int>& prices, vector<int>& pages, int n, int x) {
-
-
-    for(int i = 1; i <= n; i++) {
-        for(int j = 0; j <= x; j++) {
-           if(j == 0) continue;
-           dp[i%2][j] = dp[(i-1)%2][j];
-           if(prices[i-1] <= j) {
-               dp[i%2][j] = max(dp[i%2][j], pages[i-1] + dp[(i-1)%2][j-prices[i-1]]);
-           }
-        }
+long long arrayDescription(vector<long long>& nums, long long limit, long long n, long long pos, long long prev) {
+    if (pos == n) return 1;
+    if (dp[pos][prev] != -1) return dp[pos][prev];
+    if (nums[pos] != 0) {
+        if (abs(nums[pos] - prev) > 1 && pos != 0) return 0;
+        return dp[pos][prev] = arrayDescription(nums, limit, n, pos + 1, nums[pos]) % MOD;
     }
-
-    return dp[(n)%2][x];
+    long long ans = 0;
+    for (long long i = 1; i <= limit; i++) {
+        if (abs(i - prev) > 1 && pos != 0) continue;
+        nums[pos] = i;
+        ans = (ans % MOD + arrayDescription(nums, limit, n, pos + 1, i) % MOD) % MOD;
+        nums[pos] = 0;
+    }
+    return dp[pos][prev] = ans;
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n, x;
+    long long n, m;
+    cin >> n >> m;
 
-    cin >> n >> x;
-
-    vector<int> prices(n), pages(n);
-
-    for(int i = 0; i < n; i++) {
-        cin >> prices[i];
+    vector<long long> nums(n);
+    for (long long i = 0; i < n; i++) {
+        cin >> nums[i];
     }
 
-    for(int i = 0; i < n; i++) {
-        cin >> pages[i];
-    }
+    memset(dp, -1, sizeof(dp));
 
-    memset(dp, 0, sizeof(dp));
-
-    cout << maxPages(prices, pages, n, x) << endl;
+    cout << arrayDescription(nums, m, n, 0, 0) << endl;
 
     return 0;
 }
