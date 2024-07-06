@@ -3,50 +3,50 @@ import java.io.*;
 
 public class Main {
 
-    public static long solve(int candies, int[] nums) {
-        int MOD = (int) 1e9 + 7;
-
-        long[][] dp = new long[nums.length + 1][candies + 1];
-        long[][] prefix = new long[nums.length + 1][candies + 1];
-
-        for (int pos = nums.length; pos >= 0; pos--) {
-            for (int k = 0; k <= candies; k++) {
-                if (pos == nums.length) {
-                    if (k == 0) dp[pos][k] = 1;
-                    else dp[pos][k] = 0;
-                } else {
-                    int max = Math.min(k, nums[pos]);
-
-                    if (max >= 0) {
-                        long ans = 0L;
-                        int start = k - max;
-                        int end = k;
-
-                        ans = (prefix[pos + 1][end] - (start > 0 ? prefix[pos + 1][start - 1] : 0) + MOD) % MOD;
-                        dp[pos][k] = ans;
-                    }
-                }
-            }
-
-            prefix[pos][0] = dp[pos][0];
-            for (int i = 1; i <= candies; i++) {
-                prefix[pos][i] = (prefix[pos][i - 1] + dp[pos][i]) % MOD;
+    public static int knapsack(int N, int W, int[][] sacks) {
+        int maxValue = 0;
+        for (int[] sack : sacks) {
+            maxValue += sack[0];
+        }
+        long[][] dp = new long[N + 1][maxValue + 1];
+        for (long[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        int ans = 0;
+        for (int profit = 0; profit <= maxValue; profit++) {
+            if (possibleMinWeight(0, profit, dp, sacks, N) <= W) {
+                ans = profit;
             }
         }
+        return ans;
+    }
 
-        return dp[0][candies];
+    private static long possibleMinWeight(int index, int profit, long[][] dp, int[][] sacks, int N) {
+        if (profit == 0) return 0;
+        if (index == N) return (long) 1e14;
+
+        if (dp[index][profit] != -1) return dp[index][profit];
+
+        long ans1 = possibleMinWeight(index + 1, profit, dp, sacks, N);
+        long ans2 = Integer.MAX_VALUE;
+        if (profit >= sacks[index][0]) {
+            ans2 = sacks[index][1] + possibleMinWeight(index + 1, profit - sacks[index][0], dp, sacks, N);
+        }
+
+        return dp[index][profit] = Math.min(ans1, ans2);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int k = sc.nextInt();
+        int N = sc.nextInt();
+        int W = sc.nextInt();
 
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
+        int[][] sacks = new int[N][2];
+        for (int i = 0; i < N; i++) {
+            sacks[i][0] = sc.nextInt();  // profit
+            sacks[i][1] = sc.nextInt();  // weight
         }
 
-        System.out.println(solve(k, nums));
+        System.out.println(knapsack(N, W, sacks));
     }
 }
