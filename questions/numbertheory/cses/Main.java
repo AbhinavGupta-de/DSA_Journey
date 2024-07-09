@@ -1,40 +1,34 @@
 import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+    public static final int MAX_VAL = 1000000;
 
-        while (t-- > 0) {
-            long n = sc.nextLong();
-            long pow = sc.nextLong();
+    public static int[] divisors = new int[MAX_VAL + 1];
 
-            try {
-                System.out.println(power(n, pow));
-            } catch (ArithmeticException e) {
-                System.out.println("Overflow occurred");
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(io.readLine());
+
+        int[] arr = Arrays.stream(io.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        for (int i = 0; i < n; i++) {
+            int up = (int)Math.sqrt(arr[i]);
+            for (int div = 1; div <= up; div++) {
+                if (arr[i] % div == 0) {
+                    divisors[div]++;
+                    if (div != arr[i] / div) { divisors[arr[i] / div]++; }
+                }
             }
         }
-    }
 
-    private static long power(long n, long pow) {
-        if (pow == 0) return 1;
-        if (pow < 0) throw new IllegalArgumentException("Exponent should be non-negative");
-
-        if (pow % 2 == 0) {
-            long half = power(n, pow / 2);
-            return safeMultiply(half, half);
-        } else {
-            return safeMultiply(n, power(n, pow - 1));
+        for (int i = MAX_VAL; i >= 1; i--) {
+            if (divisors[i] >= 2) {
+                System.out.println(i);
+                break;
+            }
         }
-    }
-
-    private static long safeMultiply(long a, long b) {
-        if (a > 0 ? b > Long.MAX_VALUE / a || b < Long.MIN_VALUE / a
-                : (a < -1 ? b > Long.MIN_VALUE / a || b < Long.MAX_VALUE / a
-                : a == -1 && b == Long.MIN_VALUE)) {
-            throw new ArithmeticException("Overflow occurred");
-        }
-        return a * b;
     }
 }
