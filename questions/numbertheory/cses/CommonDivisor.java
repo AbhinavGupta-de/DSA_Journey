@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class CommonDivisors {
-    public static final int MAX_VAL = 1000000;
+    public static final int MAX_VAL = 10_00_000;
 
     public static int[] divisors = new int[MAX_VAL + 1];
 
